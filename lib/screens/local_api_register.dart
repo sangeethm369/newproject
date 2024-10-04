@@ -15,8 +15,11 @@ class LocalApiRegister extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              Text("Name",),
               TextFormField(controller:provider.name ,),
+              Text("Email"),
               TextFormField(controller:provider.email ,),
+              Text("Phone"),
               TextFormField(controller:provider.phone ,),
               ElevatedButton(onPressed: (){
                 Provider.of<LocalApiController>(context,listen: false).apiPost();
@@ -25,6 +28,7 @@ class LocalApiRegister extends StatelessWidget {
           ),
         );
        },),
+       
     );
   }
 }
