@@ -39,6 +39,7 @@ dependencies:
   provider: ^6.1.2
   hive:
   hive_flutter:
+  http: ^1.2.2
   
   
   

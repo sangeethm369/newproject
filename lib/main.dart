@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:newproject/models/users.dart';
-import 'package:newproject/screens/sign_up.dart';
+import 'package:newproject/screens/local_api_login.dart';
 import 'package:newproject/utilities/constants/image_controller.dart';
+import 'package:newproject/utilities/controllers/local_api_controllers.dart';
 import 'package:provider/provider.dart';
 Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,10 +22,11 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (BuildContext context)=>ImagePickerController(),),
+        ChangeNotifierProvider(create: (BuildContext context)=>LocalApiController(),),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: SignUpPage(),
+        home: LocalApiLogin(),
       ),
     );
   }
