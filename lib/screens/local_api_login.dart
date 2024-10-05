@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:newproject/utilities/controllers/local_api_controllers.dart';
+import 'package:newproject/controller/local_api_controller.dart';
 import 'package:provider/provider.dart';
 
 class LocalApiLogin extends StatelessWidget {

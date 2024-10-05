@@ -5,21 +5,19 @@ import 'package:newproject/screens/log_in.dart';
 import 'package:newproject/utilities/constants/hive_box.dart';
 import 'package:newproject/utilities/custom_textformfield/custom_text_form_field.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class SignUpPage extends StatelessWidget {
+  SignUpPage({super.key});
 
-  @override
-  State<SignUpPage> createState() => _SignUpPageState();
-}
+  final TextEditingController name=TextEditingController();
 
-class _SignUpPageState extends State<SignUpPage> {
-  TextEditingController name=TextEditingController();
-  TextEditingController password=TextEditingController();
-  TextEditingController confirm=TextEditingController();
-  TextEditingController email=TextEditingController();
+  final TextEditingController password=TextEditingController();
 
-  final bool _passwordShow=true;
+  final TextEditingController confirm=TextEditingController();
+
+  final TextEditingController email=TextEditingController();
+
   final _formKey=GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,13 +37,13 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 20,),
                 Text("Name",style: TextStyle(color: Colors.green.shade700,fontWeight: FontWeight.w400)),
-                CustomLoginTextFormField(ctrl: name,hintText: "name",),
+                CustomTextFormField(controller: name, hint: "name", obscured: false),
                 const SizedBox(height: 10,),
                 Text("Email",style: TextStyle(color: Colors.green.shade700,fontWeight: FontWeight.w400)),
-                CustomLoginTextFormField(ctrl: email,hintText: "email",),
+                CustomTextFormField(controller: email,hint: "email",obscured: false,),
                 const SizedBox(height: 10,),
                 Text("Password",style: TextStyle(color: Colors.green.shade700,fontWeight: FontWeight.w400)),
-                CustomObscureTextFormField(ctrl: password,hintText: "password", obscureText: _passwordShow,),
+                CustomTextFormField(controller: password,hint: "password", obscured: true,),
                 const SizedBox(height: 15,),
             
                 Align(
@@ -82,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         fontWeight: FontWeight.w400),)),
                 ),
                 Align(child: TextButton( onPressed: () { 
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const LogInPage(),));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LogInPage(),));
                 }, child: const Text("Already have an account?",style: TextStyle(color: Colors.grey),),),),
                 
               ],
@@ -103,5 +101,4 @@ class _SignUpPageState extends State<SignUpPage> {
     final box=HiveBoxs.getUsers();
     box.put(email, users);
   }
-  
 }

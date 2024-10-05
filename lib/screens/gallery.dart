@@ -38,7 +38,8 @@ class _GalleryPageState extends State<GalleryPage> {
           if(fileImages.isEmpty){
             return const Center(child:Text("No Images\nplease add Images",textAlign: TextAlign.center,));
           }
-          else{return GridView.builder(
+          else{
+            return GridView.builder(
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 150), 
           itemCount: fileImages.length,
           itemBuilder: (context, index) {

@@ -1,91 +1,46 @@
+
 import 'package:flutter/material.dart';
+import 'package:newproject/controller/obscure_controller.dart';
+import 'package:provider/provider.dart';
 
-class CustomLoginTextFormField extends StatelessWidget {
-  const CustomLoginTextFormField({
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField({
     super.key,
-    required this.ctrl,
-    this.hintText,
-  });
-
-  final TextEditingController ctrl;
-  final String? hintText;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: ctrl,
-      validator: (value) {
-        if (value==null||value.isEmpty) {
-          return "please Enter valid $hintText";
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.green),
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(15),
-            topRight: Radius.circular(15)
-            )
-          ),
-        hintText: hintText,
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(15),
-            topRight: Radius.circular(15)
-            )
-          )
-        ),
-      );
-  }
-}
-// ignore: must_be_immutable
-class CustomObscureTextFormField extends StatefulWidget {
-  final TextEditingController ctrl;
-  bool obscureText;
-  final String? hintText;
-
-  CustomObscureTextFormField({super.key,required this.ctrl,
-    this.hintText,required this.obscureText});
-
-  @override
-  State<CustomObscureTextFormField> createState() => _CustomObscureTextFormFieldState();
-}
-
-class _CustomObscureTextFormFieldState extends State<CustomObscureTextFormField> {
-  @override
-  Widget build(BuildContext context) {
     
+    required this.controller,
+    required this.hint,
+    required this.obscured,
+  });
+  final bool obscured;
+  
+  final TextEditingController controller;
+  final String hint;
+
+  @override
+  Widget build(BuildContext context) {
+    final obscureProvider=Provider.of<ObscureController>(context);
     return TextFormField(
-      controller: widget.ctrl,
-      validator: (value) {
-        if (value==null||value.isEmpty) {
-          return "please Enter valid ${widget.hintText}";
-        }
-        return null;
-      },
-      obscureText: widget.obscureText,
-      decoration: InputDecoration(suffixIcon: IconButton(onPressed: (){
-        setState(() {
-          widget.obscureText=!widget.obscureText;
-        });
-      }, icon: widget.obscureText?const Icon(Icons.visibility_off):const Icon(Icons.visibility)),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.green),
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(15),
-            topRight: Radius.circular(15)
-            )
-          ),
-        
-        hintText: widget.hintText,
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(15),
-            topRight: Radius.circular(15)
-            )
-          )
-        ),
-      );
+     obscureText: obscured?obscureProvider.obscure:obscured,
+     controller: controller,
+     decoration: InputDecoration(
+       suffixIcon: obscured? IconButton(onPressed: (){
+         Provider.of<ObscureController>(context,listen: false).setObscure();
+       }, icon: obscureProvider.icon):null,
+       focusedBorder: const OutlineInputBorder(
+         borderSide: BorderSide(color: Colors.green),
+         borderRadius: BorderRadius.only(
+           bottomLeft: Radius.circular(15),
+           topRight: Radius.circular(15)
+           )),
+       hintText: hint,
+       border: const OutlineInputBorder(
+         borderRadius: BorderRadius.only(
+           bottomLeft: Radius.circular(15),
+           topRight: Radius.circular(15)
+           )
+         )
+       
+     ),
+     );
   }
 }

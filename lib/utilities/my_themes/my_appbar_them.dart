@@ -5,10 +5,10 @@ class MyAppbarThem {
   MyAppbarThem._();
   static AppBarTheme lightAppBarTheme() => const AppBarTheme(
     color: lightSecondaryColor,
-    titleTextStyle: TextStyle(color: Colors.white));
+    titleTextStyle: TextStyle(color: Colors.black));
 
-  static AppBarTheme darkAppBarTheme() => AppBarTheme(
+  static AppBarTheme darkAppBarTheme() => const AppBarTheme(
     color:darkSecondaryColor,
-    titleTextStyle: const TextStyle(color: Colors.white));
+    titleTextStyle: TextStyle(color: Colors.white));
   
 }

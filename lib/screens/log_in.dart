@@ -3,18 +3,15 @@ import 'package:newproject/screens/gallery.dart';
 import 'package:newproject/utilities/constants/hive_box.dart';
 import 'package:newproject/utilities/custom_textformfield/custom_text_form_field.dart';
 
-class LogInPage extends StatefulWidget {
-  const LogInPage({super.key});
+class LogInPage extends StatelessWidget {
+  LogInPage({super.key});
 
-  @override
-  State<LogInPage> createState() => _LogInPageState();
-}
+  final TextEditingController email=TextEditingController();
 
-class _LogInPageState extends State<LogInPage> {
-  TextEditingController email=TextEditingController();
-  TextEditingController password=TextEditingController();
-  final bool _isShow=true;
+  final TextEditingController password=TextEditingController();
+
   final _formKey=GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +34,13 @@ class _LogInPageState extends State<LogInPage> {
             
                 Text("Email",style: TextStyle(color: Colors.green.shade700,fontWeight: FontWeight.w400),),
             
-                CustomLoginTextFormField(ctrl: email,hintText: "email",),
+                CustomTextFormField(obscured: false,controller: email,hint: "email",),
             
                 const SizedBox(height: 10,),
             
                 Text("Password",style: TextStyle(color: Colors.green.shade700,fontWeight: FontWeight.w400),),
             
-                CustomObscureTextFormField(ctrl: password, obscureText: _isShow,hintText: "password",),
+                CustomTextFormField(controller: password, obscured:true ,hint: "password",),
             
                 const SizedBox(height: 10,),
             

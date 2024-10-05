@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class CustomLogSignButton extends StatelessWidget {
   final String name;
-
+  final void Function() onTap;
   const CustomLogSignButton({
-    super.key, required this.name
+    super.key, required this.name, required this.onTap
   });
 
   @override
@@ -16,7 +16,7 @@ class CustomLogSignButton extends StatelessWidget {
             bottomRight: Radius.circular(15),
             topLeft: Radius.circular(15))),
         backgroundColor: const Color.fromARGB(255, 158, 158, 158)),
-      onPressed: (){}, 
+      onPressed: onTap, 
       child:  Text(name,style: const TextStyle(color: Colors.blue,fontWeight: FontWeight.w400),));
   }
 }
