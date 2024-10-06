@@ -6,7 +6,7 @@ import 'package:newproject/controller/obscure_controller.dart';
 import 'package:newproject/controller/theme_controller.dart';
 import 'package:newproject/firebase_options.dart';
 import 'package:newproject/models/users.dart';
-import 'package:newproject/screens/fire_base_login.dart';
+import 'package:newproject/screens/fire_base_signup.dart';
 import 'package:newproject/utilities/constants/image_controller.dart';
 import 'package:provider/provider.dart';
 Future main() async{
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: Provider.of<ThemeController>(context).themeData,
         debugShowCheckedModeBanner: false,
-        home: FireBaseLoginPage(),
+        home: FireBaseSignup(),
       ),
     );
   }
